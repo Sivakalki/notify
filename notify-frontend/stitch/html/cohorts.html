@@ -1,0 +1,449 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Notify - Cohorts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0B0E14;
+            color: #e1e2eb;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Custom scrollbar for dense UI */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #151921;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2D333B;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #45474b;
+        }
+        .linear-mask {
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#3d3025",
+                        "surface-container-low": "#191c22",
+                        "outline-variant": "#45474b",
+                        "surface-variant": "#32353c",
+                        "on-background": "#e1e2eb",
+                        "tertiary-fixed-dim": "#d8c3b3",
+                        "on-secondary-fixed": "#07006c",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#524438",
+                        "primary-fixed-dim": "#c1c7d1",
+                        "surface-container-lowest": "#0b0e14",
+                        "inverse-on-surface": "#2e3037",
+                        "inverse-surface": "#e1e2eb",
+                        "tertiary": "#d8c3b3",
+                        "surface-container-high": "#272a31",
+                        "on-primary-fixed-variant": "#414750",
+                        "error-container": "#93000a",
+                        "on-surface": "#e1e2eb",
+                        "primary": "#c1c7d1",
+                        "on-tertiary": "#3b2e23",
+                        "surface-container-highest": "#32353c",
+                        "background": "#10131a",
+                        "secondary-container": "#3131c0",
+                        "outline": "#8f9195",
+                        "on-secondary": "#1000a9",
+                        "on-tertiary-container": "#aa9789",
+                        "surface-container": "#1d2026",
+                        "surface-tint": "#c1c7d1",
+                        "primary-container": "#2d333b",
+                        "on-primary": "#2b3139",
+                        "secondary": "#c0c1ff",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#24190f",
+                        "on-surface-variant": "#c5c6cb",
+                        "secondary-fixed": "#e1e0ff",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed": "#f5dfce",
+                        "on-secondary-container": "#b0b2ff",
+                        "inverse-primary": "#595f68",
+                        "surface": "#10131a",
+                        "on-primary-fixed": "#161c23",
+                        "surface-dim": "#10131a",
+                        "on-primary-container": "#959ba5",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#dde3ed",
+                        "surface-bright": "#363940"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "sidebar_width": "240px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Geist"],
+                        "mono": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "mono": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full h-16 z-40 bg-surface-container-low border-b border-outline-variant flex items-center justify-between px-md"><button class="p-2 hover:bg-surface-variant rounded-full transition-colors mr-2 lg:hidden"><span class="material-symbols-outlined">menu</span></button>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">Notify</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="px-sm py-xs border border-outline text-label-sm font-label-sm rounded uppercase tracking-widest text-on-surface-variant">PROD</div>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-on-primary-container text-[18px]">account_circle</span>
+</div>
+</div>
+</header>
+<!-- NavigationDrawer -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar_width z-30 bg-surface-container-low border-r border-outline-variant flex flex-col gap-xs p-sm">
+<nav class="flex flex-col gap-1"><a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined">dashboard</span> Dashboard</a><a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined">campaign</span> Campaigns</a><a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined">send</span> Send</a><a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined">upload_file</span> Bulk Upload</a><a class="flex items-center gap-sm px-sm py-2 bg-secondary-container text-on-secondary-container font-bold rounded-lg transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined">groups</span> Cohorts</a><a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined">error_outline</span> DLQ</a><a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined">settings</span> Settings</a></nav>
+<div class="mt-auto p-sm border-t border-outline-variant">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-tertiary rounded flex items-center justify-center text-on-tertiary font-bold text-[12px]">DN</div>
+<div class="overflow-hidden">
+<p class="text-on-surface font-label-md text-label-md truncate">Developer Name</p>
+<p class="text-on-surface-variant text-label-sm font-label-sm truncate">Admin Access</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-sidebar_width mt-16 p-lg bg-surface-container-lowest min-h-[calc(100vh-64px)] overflow-x-hidden">
+<div class="max-w-[1400px] mx-auto">
+<!-- Header Section -->
+<div class="flex items-center justify-between mb-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Cohorts</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage and segment your user groups for targeted campaigns.</p>
+</div>
+<button class="flex items-center gap-xs bg-primary-container border border-outline-variant px-md py-sm rounded-lg hover:bg-surface-variant transition-colors text-on-primary-container font-label-md text-label-md" onclick="toggleModal('new-cohort-modal')">
+<span class="material-symbols-outlined text-[18px]">add</span> New Cohort
+                </button>
+</div>
+<!-- Bento Layout / Dashboard Stats -->
+<div class="grid grid-cols-12 gap-md mb-lg">
+<!-- Main Table Area -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-md py-sm border-b border-outline-variant flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Active Cohorts</span>
+<div class="flex items-center gap-xs border border-outline-variant rounded-lg px-2 py-1 bg-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px] text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-sm font-label-sm w-48 text-on-surface" placeholder="Filter cohorts..." type="text">
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-b border-outline-variant">
+<th class="px-md py-3 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">Name</th>
+<th class="px-md py-3 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">Description</th>
+<th class="px-md py-3 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">Member Count</th>
+<th class="px-md py-3 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">Created Date</th>
+<th class="px-md py-3"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-high transition-colors cursor-pointer" onclick="showDetail('Beta Testers')">
+<td class="px-md py-4 text-body-md font-body-md text-on-surface font-medium">Beta Testers</td>
+<td class="px-md py-4 text-body-sm font-body-sm text-on-surface-variant">Early access users for v2.0 features.</td>
+<td class="px-md py-4 text-body-sm font-body-sm text-on-surface font-mono">12,450</td>
+<td class="px-md py-4 text-body-sm font-body-sm text-on-surface-variant">Oct 12, 2023</td>
+<td class="px-md py-4 text-right">
+<span class="material-symbols-outlined text-outline hover:text-on-surface">chevron_right</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors cursor-pointer" onclick="showDetail('Churn Risk - High')">
+<td class="px-md py-4 text-body-md font-body-md text-on-surface font-medium">Churn Risk - High</td>
+<td class="px-md py-4 text-body-sm font-body-sm text-on-surface-variant">Users inactive for &gt; 30 days.</td>
+<td class="px-md py-4 text-body-sm font-body-sm text-on-surface font-mono">5,821</td>
+<td class="px-md py-4 text-body-sm font-body-sm text-on-surface-variant">Nov 05, 2023</td>
+<td class="px-md py-4 text-right">
+<span class="material-symbols-outlined text-outline hover:text-on-surface">chevron_right</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors cursor-pointer">
+<td class="px-md py-4 text-body-md font-body-md text-on-surface font-medium">Power Users</td>
+<td class="px-md py-4 text-body-sm font-body-sm text-on-surface-variant">Top 5% by engagement frequency.</td>
+<td class="px-md py-4 text-body-sm font-body-sm text-on-surface font-mono">892</td>
+<td class="px-md py-4 text-body-sm font-body-sm text-on-surface-variant">Dec 01, 2023</td>
+<td class="px-md py-4 text-right">
+<span class="material-symbols-outlined text-outline hover:text-on-surface">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Side Stats Panel -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-md">
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md">
+<h3 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mb-sm">Quick Insights</h3>
+<div class="space-y-md">
+<div class="flex items-center justify-between">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Total Users tracked</span>
+<span class="text-headline-md font-headline-md text-on-surface font-mono">142,093</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-3/4"></div>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-secondary">75% Segemented</span>
+<span class="text-on-surface-variant">25% Uncategorized</span>
+</div>
+</div>
+</div>
+<div class="bg-primary-container/10 border border-primary/20 rounded-xl p-md relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[80px]">auto_awesome</span>
+</div>
+<h3 class="text-label-sm font-label-sm text-primary uppercase tracking-wider mb-xs">Smart Cohorts</h3>
+<p class="text-body-sm font-body-sm text-on-primary-container mb-md leading-relaxed">Let AI automatically cluster your users based on notification interaction patterns.</p>
+<button class="w-full py-2 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:opacity-90 transition-opacity">Enable Smart Sync</button>
+</div>
+</div>
+</div>
+<!-- Detail View (Initially Hidden) -->
+<div class="hidden animate-in fade-in slide-in-from-bottom-4 duration-500" id="cohort-detail">
+<div class="flex items-center gap-sm mb-md">
+<button class="p-1 hover:bg-surface-variant rounded-full transition-colors" onclick="hideDetail()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h3 class="font-headline-md text-headline-md text-on-surface" id="detail-title">Cohort: Beta Testers</h3>
+<div class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-label-sm font-label-sm rounded uppercase ml-2">Static</div>
+</div>
+<div class="grid grid-cols-12 gap-lg">
+<!-- Members Table -->
+<div class="col-span-12 xl:col-span-8 bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-md py-sm border-b border-outline-variant flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Members (12,450)</span>
+<div class="flex items-center gap-sm">
+<button class="text-label-sm font-label-sm text-primary hover:underline">Export CSV</button>
+</div>
+</div>
+<div class="max-h-[600px] overflow-y-auto">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-high z-10">
+<tr class="border-b border-outline-variant">
+<th class="px-md py-3 text-label-sm font-label-sm text-on-surface-variant uppercase">User ID</th>
+<th class="px-md py-3 text-label-sm font-label-sm text-on-surface-variant uppercase">External ID</th>
+<th class="px-md py-3 text-label-sm font-label-sm text-on-surface-variant uppercase">Added Date</th>
+<th class="px-md py-3"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-variant/30">
+<td class="px-md py-3 text-body-sm font-body-sm font-mono">usr_9x2k8l1m</td>
+<td class="px-md py-3 text-body-sm font-body-sm">cust_9901</td>
+<td class="px-md py-3 text-body-sm font-body-sm text-on-surface-variant">2023-11-20 14:02</td>
+<td class="px-md py-3 text-right">
+<button class="p-1 hover:text-error transition-colors"><span class="material-symbols-outlined text-[18px]">person_remove</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/30">
+<td class="px-md py-3 text-body-sm font-body-sm font-mono">usr_0j3n5h2a</td>
+<td class="px-md py-3 text-body-sm font-body-sm">cust_1024</td>
+<td class="px-md py-3 text-body-sm font-body-sm text-on-surface-variant">2023-11-20 14:05</td>
+<td class="px-md py-3 text-right">
+<button class="p-1 hover:text-error transition-colors"><span class="material-symbols-outlined text-[18px]">person_remove</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/30">
+<td class="px-md py-3 text-body-sm font-body-sm font-mono">usr_7v4s9p0q</td>
+<td class="px-md py-3 text-body-sm font-body-sm">cust_5562</td>
+<td class="px-md py-3 text-body-sm font-body-sm text-on-surface-variant">2023-11-21 09:12</td>
+<td class="px-md py-3 text-right">
+<button class="p-1 hover:text-error transition-colors"><span class="material-symbols-outlined text-[18px]">person_remove</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Add Users Panel -->
+<div class="col-span-12 xl:col-span-4 flex flex-col gap-md">
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md">
+<h3 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mb-md">Add Users</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-sm">Paste a list of external IDs, emails, or phone numbers (one per line).</p>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-sm text-body-sm font-mono text-on-surface focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all placeholder:text-outline" id="add-users-input" placeholder="user_123
+test@example.com
++1234567890" rows="8"></textarea>
+<div class="mt-md border-2 border-dashed border-outline-variant rounded-lg p-lg text-center hover:bg-surface-variant/20 transition-all cursor-pointer" id="upload-zone">
+<span class="material-symbols-outlined text-outline mb-sm">cloud_upload</span>
+<p class="text-label-md font-label-md text-on-surface-variant">Drop CSV here or <span class="text-primary underline">browse</span></p>
+</div>
+<button class="w-full mt-lg py-2.5 bg-on-surface text-surface font-label-md text-label-md rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-sm" onclick="processUsers()">
+<span class="material-symbols-outlined text-[18px]">group_add</span> Add to Cohort
+                            </button>
+</div>
+<!-- Result Display -->
+<div class="hidden bg-surface-container-high border border-outline-variant rounded-xl p-md animate-in fade-in duration-300" id="process-result">
+<h4 class="text-label-sm font-label-sm text-on-surface uppercase tracking-wider mb-md">Processing Results</h4>
+<div class="grid grid-cols-3 gap-sm">
+<div class="bg-surface-container-lowest p-sm rounded border border-outline-variant text-center">
+<p class="text-label-sm text-on-surface-variant">Total</p>
+<p class="font-mono text-headline-md text-on-surface" id="res-total">0</p>
+</div>
+<div class="bg-surface-container-lowest p-sm rounded border border-outline-variant text-center">
+<p class="text-label-sm text-on-surface-variant">Added</p>
+<p class="font-mono text-headline-md text-secondary" id="res-added">0</p>
+</div>
+<div class="bg-surface-container-lowest p-sm rounded border border-outline-variant text-center">
+<p class="text-label-sm text-on-surface-variant">Dupes</p>
+<p class="font-mono text-headline-md text-on-surface-variant" id="res-dupes">0</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modals -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center p-md" id="new-cohort-modal">
+<div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleModal('new-cohort-modal')"></div>
+<div class="relative bg-surface-container-low border border-outline-variant rounded-xl w-full max-w-lg overflow-hidden shadow-2xl">
+<div class="p-md border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md">Create New Cohort</h3>
+<button class="text-outline hover:text-on-surface" onclick="toggleModal('new-cohort-modal')"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="p-md space-y-md">
+<div class="space-y-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant uppercase">Cohort Name</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-md py-2 focus:ring-1 focus:ring-primary focus:border-primary outline-none" placeholder="e.g., Inactive 30 Days" type="text">
+</div>
+<div class="space-y-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant uppercase">Description</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-md py-2 focus:ring-1 focus:ring-primary focus:border-primary outline-none" placeholder="Optional description..." rows="3"></textarea>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="border border-primary bg-primary/5 p-sm rounded-lg cursor-pointer flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary">person_add</span>
+<span class="text-label-md font-label-md text-on-surface">Static List</span>
+<span class="text-[10px] text-on-surface-variant text-center leading-tight">Manual upload &amp; individual additions</span>
+</div>
+<div class="border border-outline-variant hover:border-outline p-sm rounded-lg cursor-pointer flex flex-col items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-outline">sync_alt</span>
+<span class="text-label-md font-label-md text-on-surface">Dynamic Sync</span>
+<span class="text-[10px] text-on-surface-variant text-center leading-tight">SQL Query or Event-based rules</span>
+</div>
+</div>
+</div>
+<div class="p-md bg-surface-container-high flex justify-end gap-sm">
+<button class="px-md py-2 text-label-md font-label-md text-on-surface-variant hover:text-on-surface" onclick="toggleModal('new-cohort-modal')">Cancel</button>
+<button class="px-md py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md">Create Cohort</button>
+</div>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+        }
+
+        function showDetail(name) {
+            document.getElementById('detail-title').innerText = `Cohort: ${name}`;
+            document.getElementById('cohort-detail').classList.remove('hidden');
+            window.scrollTo({ top: document.getElementById('cohort-detail').offsetTop - 80, behavior: 'smooth' });
+        }
+
+        function hideDetail() {
+            document.getElementById('cohort-detail').classList.add('hidden');
+        }
+
+        function processUsers() {
+            const input = document.getElementById('add-users-input').value;
+            const lines = input.split('\n').filter(l => l.trim() !== '');
+            
+            if (lines.length === 0) return;
+
+            const resPanel = document.getElementById('process-result');
+            const totalEl = document.getElementById('res-total');
+            const addedEl = document.getElementById('res-added');
+            const dupesEl = document.getElementById('res-dupes');
+
+            resPanel.classList.remove('hidden');
+            
+            // Simulating processing
+            let count = 0;
+            const interval = setInterval(() => {
+                count += Math.ceil(lines.length / 10);
+                if (count >= lines.length) {
+                    count = lines.length;
+                    clearInterval(interval);
+                }
+                totalEl.innerText = count;
+                addedEl.innerText = Math.floor(count * 0.92);
+                dupesEl.innerText = Math.floor(count * 0.08);
+            }, 50);
+        }
+
+        // Drop zone highlight
+        const dropZone = document.getElementById('upload-zone');
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('bg-primary/5', 'border-primary');
+        });
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('bg-primary/5', 'border-primary');
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>API Key Info - Notify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0B0E14;
+            color: #e1e2eb;
+            overflow-x: hidden;
+        }
+        .tonal-layer-1 { background-color: #151921; border: 1px solid #2D333B; }
+        .tonal-layer-2 { background-color: #1C212B; border: 1px solid #2D333B; }
+        .glass-effect { backdrop-filter: blur(8px); background-color: rgba(11, 14, 20, 0.8); }
+        .danger-glow:focus { border-color: #ffb4ab; box-shadow: 0 0 0 2px rgba(255, 180, 171, 0.2); }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#3d3025",
+                        "surface-container-low": "#191c22",
+                        "outline-variant": "#45474b",
+                        "surface-variant": "#32353c",
+                        "on-background": "#e1e2eb",
+                        "tertiary-fixed-dim": "#d8c3b3",
+                        "on-secondary-fixed": "#07006c",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#524438",
+                        "primary-fixed-dim": "#c1c7d1",
+                        "surface-container-lowest": "#0b0e14",
+                        "inverse-on-surface": "#2e3037",
+                        "inverse-surface": "#e1e2eb",
+                        "tertiary": "#d8c3b3",
+                        "surface-container-high": "#272a31",
+                        "on-primary-fixed-variant": "#414750",
+                        "error-container": "#93000a",
+                        "on-surface": "#e1e2eb",
+                        "primary": "#c1c7d1",
+                        "on-tertiary": "#3b2e23",
+                        "surface-container-highest": "#32353c",
+                        "background": "#10131a",
+                        "secondary-container": "#3131c0",
+                        "outline": "#8f9195",
+                        "on-secondary": "#1000a9",
+                        "on-tertiary-container": "#aa9789",
+                        "surface-container": "#1d2026",
+                        "surface-tint": "#c1c7d1",
+                        "primary-container": "#2d333b",
+                        "on-primary": "#2b3139",
+                        "secondary": "#c0c1ff",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#24190f",
+                        "on-surface-variant": "#c5c6cb",
+                        "secondary-fixed": "#e1e0ff",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed": "#f5dfce",
+                        "on-secondary-container": "#b0b2ff",
+                        "inverse-primary": "#595f68",
+                        "surface": "#10131a",
+                        "on-primary-fixed": "#161c23",
+                        "surface-dim": "#10131a",
+                        "on-primary-container": "#959ba5",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#dde3ed",
+                        "surface-bright": "#363940"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "sidebar_width": "240px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Geist"],
+                        "mono": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "mono": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopAppBar -->
+<header class="bg-surface-container-low text-primary font-headline-md text-headline-md fixed top-0 w-full h-16 z-40 border-b border-outline-variant flex items-center justify-between px-md w-full">
+<div class="flex items-center gap-sm"><button class="material-symbols-outlined p-1 hover:bg-surface-variant rounded-lg transition-colors md:hidden" data-icon="menu">menu</button>
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">Notify</h1>
+</div>
+<div class="flex items-center gap-sm">
+<div class="bg-surface-variant hover:bg-surface-variant transition-colors cursor-pointer active:opacity-80 px-sm py-1 rounded-lg">
+<span class="font-label-md text-label-md">PROD</span>
+</div>
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- NavigationDrawer -->
+<aside class="bg-surface-container-low fixed left-0 top-16 h-[calc(100vh-64px)] w-[240px] z-30 border-r border-outline-variant hidden md:flex flex-col gap-xs p-sm">
+<div class="flex items-center gap-sm p-sm mb-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-primary font-bold">DN</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Developer Name</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Admin Access</span>
+</div>
+</div>
+<nav class="flex flex-col gap-xs"><a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard</a><a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="campaign">campaign</span> Campaigns</a><a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="send">send</span> Send</a><a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="upload_file">upload_file</span> Bulk Upload</a><a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="groups">groups</span> Cohorts</a><a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="error_outline">error_outline</span> DLQ</a><a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container font-bold rounded-lg transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="settings">settings</span> Settings</a></nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-[240px] mt-16 p-lg min-h-screen">
+<div class="max-w-5xl mx-auto space-y-lg">
+<!-- Header Section -->
+<div class="flex flex-col gap-xs mb-xl">
+<h2 class="font-display text-display text-on-surface">API Credentials</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your secure access keys to integrate Notify with your backend systems.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left Column: Key Stats & Info -->
+<div class="lg:col-span-8 space-y-lg">
+<!-- Client ID Section -->
+<div class="tonal-layer-1 p-lg rounded-xl flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Client ID</h3>
+<span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-sm py-1 rounded">Read-only</span>
+</div>
+<div class="flex items-center gap-sm bg-surface-container-lowest border border-outline-variant p-sm rounded group">
+<code class="font-mono text-mono text-primary flex-grow">ntfy_cid_9384_kx_2023_v1</code>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-1" data-icon="content_copy" onclick="copyToClipboard('ntfy_cid_9384_kx_2023_v1')">content_copy</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Use this ID to identify your application when making requests to the Notify API.</p>
+</div>
+<!-- Existing Keys Table -->
+<div class="tonal-layer-1 rounded-xl overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Active Keys</h3>
+<span class="font-label-md text-label-md text-on-surface-variant">2 Keys Active</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-high">
+<tr>
+<th class="px-lg py-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Key Alias</th>
+<th class="px-lg py-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Created</th>
+<th class="px-lg py-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Last Used</th>
+<th class="px-lg py-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary" data-icon="key">key</span>
+<span class="font-body-md text-body-md font-semibold">Production_Main</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-sm text-body-sm text-on-surface-variant">Oct 12, 2023</td>
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">2 mins ago</span>
+<span class="font-label-sm text-label-sm text-outline">192.168.1.1</span>
+</div>
+</td>
+<td class="px-lg py-md text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors" data-icon="delete">delete</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="key">key</span>
+<span class="font-body-md text-body-md font-semibold">Staging_Worker</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-sm text-body-sm text-on-surface-variant">Nov 05, 2023</td>
+<td class="px-lg py-md">
+<span class="font-body-sm text-body-sm text-outline italic">Never used</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors" data-icon="delete">delete</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column: Regenerate & Security -->
+<div class="lg:col-span-4 space-y-lg">
+<!-- Regenerate Section -->
+<div class="tonal-layer-1 p-lg rounded-xl border-l-4 border-error flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-error flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="warning">warning</span> Critical Action
+                        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                            Regenerating your primary secret will immediately invalidate the current key. Any services using the old key will start failing.
+                        </p>
+<button class="w-full py-md px-lg bg-error-container text-on-error-container hover:bg-error hover:text-on-error transition-all rounded-lg font-label-md text-label-md font-bold flex items-center justify-center gap-sm" onclick="openModal()">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span> Regenerate Primary Key
+                        </button>
+</div>
+<!-- Security Info Card -->
+<div class="bg-tertiary-container text-on-tertiary-container p-lg rounded-xl border border-tertiary/20">
+<h4 class="font-label-md text-label-md font-bold uppercase tracking-widest mb-sm text-tertiary">Security Protocol</h4>
+<ul class="space-y-sm">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-[16px] mt-1" data-icon="shield">shield</span>
+<span class="font-body-sm text-body-sm">Keys are encrypted at rest using AES-256.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-[16px] mt-1" data-icon="history">history</span>
+<span class="font-body-sm text-body-sm">All key access is logged in the Audit Trail.</span>
+</li>
+</ul>
+</div>
+<!-- WebGL Placeholder for Background atmosphere -->
+<div class="relative h-48 rounded-xl overflow-hidden border border-outline-variant">
+
+<div class="absolute inset-0 flex items-center justify-center p-md text-center bg-gradient-to-t from-background/80 to-transparent">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-tighter">System Pulse Active</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Danger Modal -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center p-md" id="danger-modal">
+<div class="absolute inset-0 bg-background/80 backdrop-blur-sm" onclick="closeModal()"></div>
+<div class="relative w-full max-w-md tonal-layer-2 rounded-xl shadow-2xl p-xl flex flex-col gap-lg border-t-4 border-error">
+<div class="flex flex-col gap-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Are you absolutely sure?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    This action is irreversible. All current integrations using <span class="font-mono text-error font-bold italic">Production_Main</span> will break until you update them with the new key.
+                </p>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Type <span class="text-on-surface font-bold">REGENERATE</span> to confirm</label>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md font-mono text-on-surface focus:ring-0 focus:border-error danger-glow transition-all" placeholder="REGENERATE" type="text">
+</div>
+<div class="flex items-center gap-md">
+<button class="flex-1 py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" onclick="closeModal()">Cancel</button>
+<button class="flex-1 py-md bg-error text-on-error font-bold rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity">Regenerate Now</button>
+</div>
+</div>
+</div>
+<!-- Toast Notification (Hidden by default) -->
+<div class="fixed bottom-lg right-lg z-[60] transform translate-y-20 opacity-0 transition-all duration-300" id="toast">
+<div class="bg-surface-container-high border border-outline-variant rounded-lg p-md flex items-center gap-md shadow-xl border-l-4 border-primary">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Client ID copied to clipboard</span>
+</div>
+</div>
+<script>
+        function openModal() {
+            const modal = document.getElementById('danger-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.add('opacity-100'), 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('danger-modal');
+            modal.classList.add('hidden');
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                toast.classList.add('translate-y-0', 'opacity-100');
+                setTimeout(() => {
+                    toast.classList.add('translate-y-20', 'opacity-0');
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                }, 3000);
+            });
+        }
+    </script>
+
+
+</body></html>

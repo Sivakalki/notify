@@ -1,0 +1,383 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Bulk Upload | Notify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#3d3025",
+                        "surface-container-low": "#191c22",
+                        "outline-variant": "#45474b",
+                        "surface-variant": "#32353c",
+                        "on-background": "#e1e2eb",
+                        "tertiary-fixed-dim": "#d8c3b3",
+                        "on-secondary-fixed": "#07006c",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#524438",
+                        "primary-fixed-dim": "#c1c7d1",
+                        "surface-container-lowest": "#0b0e14",
+                        "inverse-on-surface": "#2e3037",
+                        "inverse-surface": "#e1e2eb",
+                        "tertiary": "#d8c3b3",
+                        "surface-container-high": "#272a31",
+                        "on-primary-fixed-variant": "#414750",
+                        "error-container": "#93000a",
+                        "on-surface": "#e1e2eb",
+                        "primary": "#c1c7d1",
+                        "on-tertiary": "#3b2e23",
+                        "surface-container-highest": "#32353c",
+                        "background": "#10131a",
+                        "secondary-container": "#3131c0",
+                        "outline": "#8f9195",
+                        "on-secondary": "#1000a9",
+                        "on-tertiary-container": "#aa9789",
+                        "surface-container": "#1d2026",
+                        "surface-tint": "#c1c7d1",
+                        "primary-container": "#2d333b",
+                        "on-primary": "#2b3139",
+                        "secondary": "#c0c1ff",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#24190f",
+                        "on-surface-variant": "#c5c6cb",
+                        "secondary-fixed": "#e1e0ff",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed": "#f5dfce",
+                        "on-secondary-container": "#b0b2ff",
+                        "inverse-primary": "#595f68",
+                        "surface": "#10131a",
+                        "on-primary-fixed": "#161c23",
+                        "surface-dim": "#10131a",
+                        "on-primary-container": "#959ba5",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#dde3ed",
+                        "surface-bright": "#363940"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "sidebar_width": "240px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Geist"],
+                        "mono": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0b0e14;
+            color: #e1e2eb;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dropzone-active {
+            border-color: #c1c7d1 !important;
+            background-color: #1d2026 !important;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full h-16 z-40 bg-surface-container-low dark:bg-surface-container-low border-b border-outline-variant dark:border-outline-variant flex items-center justify-between px-md"><button class="p-2 hover:bg-surface-variant rounded-full transition-colors md:hidden">
+    <span class="material-symbols-outlined text-on-surface-variant" data-icon="menu">menu</span>
+</button>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="notifications_active">notifications_active</span>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed-dim tracking-tight">Notify</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="px-sm py-xs bg-surface-variant rounded text-label-sm font-label-md text-on-surface-variant border border-outline-variant">PROD</div>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-label-md">DN</div>
+</div>
+</header>
+<!-- NavigationDrawer -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar_width z-30 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant dark:border-outline-variant flex flex-col gap-xs p-sm">
+<div class="mb-lg px-sm pt-sm">
+<div class="flex items-center gap-sm mb-xs">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Developer Name</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Admin Access</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-xs"><a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg group" href="#">
+    <span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+    <span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg group" href="#">
+    <span class="material-symbols-outlined text-[20px]" data-icon="campaign">campaign</span>
+    <span class="font-label-md text-label-md">Campaigns</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg group" href="#">
+    <span class="material-symbols-outlined text-[20px]" data-icon="send">send</span>
+    <span class="font-label-md text-label-md">Send</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 bg-secondary-container text-on-secondary-container font-bold rounded-lg transition-all duration-200" href="#">
+    <span class="material-symbols-outlined text-[20px]" data-icon="upload_file">upload_file</span>
+    <span class="font-label-md text-label-md">Bulk Upload</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg group" href="#">
+    <span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+    <span class="font-label-md text-label-md">Cohorts</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg group" href="#">
+    <span class="material-symbols-outlined text-[20px]" data-icon="error_outline">error_outline</span>
+    <span class="font-label-md text-label-md">DLQ</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg group" href="#">
+    <span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+    <span class="font-label-md text-label-md">Settings</span>
+</a></nav>
+</aside>
+<!-- Main Content -->
+<main class="ml-sidebar_width pt-16 min-h-screen p-lg">
+<div class="max-w-[1200px] mx-auto space-y-lg">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md border-b border-outline-variant pb-lg">
+<div>
+<h2 class="font-display text-display text-on-surface">Bulk Upload</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Import large volumes of user data to trigger transactional sequences.</p>
+</div>
+<button class="flex items-center gap-sm bg-primary-container text-on-primary-container px-lg py-sm rounded border border-outline hover:bg-surface-variant transition-colors group">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+<span class="font-label-md text-label-md">Download sample CSV</span>
+</button>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+<!-- Left: Dropzone and Columns (8 Cols) -->
+<div class="lg:col-span-8 space-y-lg">
+<!-- Upload Dropzone -->
+<div class="relative min-h-[320px] flex flex-col items-center justify-center border-2 border-dashed border-outline-variant bg-surface-container rounded-xl p-xl transition-all hover:bg-surface-container-high group cursor-pointer" id="dropzone">
+<div class="flex flex-col items-center text-center max-w-md">
+<div class="w-16 h-16 bg-surface-container-highest rounded-full flex items-center justify-center mb-md border border-outline-variant group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px] text-primary" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Upload your file</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 mb-lg">
+                                Drag and drop your .csv, .xlsx, or .json file here. 
+                                Max file size 50MB.
+                            </p>
+<input accept=".csv,.xlsx,.json" class="hidden" id="fileInput" type="file">
+<button class="bg-primary text-on-primary px-xl py-md rounded-lg font-bold hover:opacity-90 active:scale-95 transition-all shadow-lg" onclick="document.getElementById('fileInput').click()">
+                                Select File
+                            </button>
+</div>
+<!-- Floating Tech Accent -->
+<div class="absolute bottom-4 right-4 flex gap-xs">
+<div class="px-2 py-1 rounded bg-surface-container-lowest border border-outline-variant text-[10px] text-on-surface-variant font-mono">.CSV</div>
+<div class="px-2 py-1 rounded bg-surface-container-lowest border border-outline-variant text-[10px] text-on-surface-variant font-mono">.XLSX</div>
+<div class="px-2 py-1 rounded bg-surface-container-lowest border border-outline-variant text-[10px] text-on-surface-variant font-mono">.JSON</div>
+</div>
+</div>
+<!-- Accepted Columns Info -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-lg">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+<h4 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Accepted Columns</h4>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="p-md bg-surface-container rounded border border-outline-variant">
+<div class="flex justify-between items-start mb-1">
+<span class="font-mono text-[12px] text-primary font-bold">externalUserId</span>
+<span class="bg-error-container text-on-error-container text-[9px] px-1.5 py-0.5 rounded uppercase font-bold">Required</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Primary key for user mapping in Notify system.</p>
+</div>
+<div class="p-md bg-surface-container rounded border border-outline-variant">
+<div class="flex justify-between items-start mb-1">
+<span class="font-mono text-[12px] text-on-surface font-bold">email</span>
+<span class="bg-surface-variant text-on-surface-variant text-[9px] px-1.5 py-0.5 rounded uppercase font-bold">Optional</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Valid email address for SMTP delivery routing.</p>
+</div>
+<div class="p-md bg-surface-container rounded border border-outline-variant">
+<div class="flex justify-between items-start mb-1">
+<span class="font-mono text-[12px] text-on-surface font-bold">phone</span>
+<span class="bg-surface-variant text-on-surface-variant text-[9px] px-1.5 py-0.5 rounded uppercase font-bold">Optional</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">E.164 formatted number for SMS and WhatsApp.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Results Card (4 Cols) -->
+<div class="lg:col-span-4 space-y-lg">
+<!-- Result Card -->
+<div class="bg-surface-container-high border border-outline rounded-xl overflow-hidden shadow-xl">
+<div class="bg-primary-container p-md border-b border-outline">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+<h4 class="font-label-md text-label-md text-on-primary font-bold uppercase tracking-wider">Latest Upload Result</h4>
+</div>
+</div>
+<div class="p-lg space-y-lg">
+<div class="flex justify-between items-center border-b border-outline-variant pb-md">
+<span class="text-on-surface-variant font-body-md">Upload ID</span>
+<span class="font-mono text-primary text-[13px] bg-surface-container-lowest px-2 py-1 rounded">#UP-7729-BN</span>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="p-md bg-surface-container-lowest rounded border border-outline-variant">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold mb-1">Added Count</p>
+<p class="text-headline-md font-display text-on-surface">14,202</p>
+</div>
+<div class="p-md bg-surface-container-lowest rounded border border-outline-variant">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold mb-1">Duplicates</p>
+<p class="text-headline-md font-display text-error">421</p>
+</div>
+</div>
+<div class="pt-md">
+<div class="flex justify-between items-end mb-2">
+<span class="text-on-surface font-bold">Total Processed</span>
+<span class="text-headline-lg font-display text-on-surface">14,623</span>
+</div>
+<div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[97%]"></div>
+</div>
+<p class="text-right text-[10px] text-on-surface-variant mt-2">Processing complete (0.8s)</p>
+</div>
+<button class="w-full py-md bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors rounded-lg font-label-md text-label-md text-on-surface flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="history">history</span>
+                                View Upload History
+                            </button>
+</div>
+</div>
+<!-- Side Tip -->
+<div class="p-lg bg-tertiary-container rounded-xl border border-tertiary/20">
+<h5 class="text-on-tertiary-container font-bold text-label-md mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="lightbulb">lightbulb</span>
+                            PRO TIP
+                        </h5>
+<p class="text-body-sm text-on-tertiary-container/80 leading-relaxed">
+                            For file sizes over 500,000 rows, we recommend using our <span class="font-mono text-tertiary">s3-direct</span> integration for better performance.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Bottom Illustration/Section (Asymmetric Pattern) -->
+<div class="relative w-full h-48 rounded-xl overflow-hidden border border-outline-variant bg-surface-container">
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<!-- Faux grid pattern for texture -->
+<div class="w-full h-full" style="background-image: radial-gradient(circle at 1px 1px, #8f9195 1px, transparent 0); background-size: 24px 24px;"></div>
+</div>
+<div class="relative z-10 p-xl flex items-center justify-between h-full">
+<div class="max-w-md">
+<h4 class="font-headline-md text-headline-md text-on-surface">Need help with data formatting?</h4>
+<p class="text-body-md text-on-surface-variant mt-2">Our technical support team can help you map custom data structures to the Notify API.</p>
+</div>
+<div class="hidden md:block">
+<img alt="Data visualization" class="h-32 w-64 object-cover rounded shadow-2xl border border-outline-variant" data-alt="A macro shot of a sleek data visualization dashboard with clean lines and neon blue and deep grey tones. The image displays sophisticated data charts and digital signals in a futuristic mission control aesthetic. The lighting is low and dramatic, emphasizing the precision of the technical interface and functional design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiP0MowfCEw8xiRQdKxb9YzwZ6kA16NliMwE8z361PRsQIZ3r-cQp1pzbwK3Btb2SlVbR6uDcKjugrlVSRU7fTgyQUk_WpEVyBr1Baz6VH0av0xKBNz16OLeaVW7G3hfzelL43PuxaS8CGPGrJnAxPrs91tpo5m1GZgjd_w7rwzX-xhGSpRaBI67z8V7BA6dTTnjbJRCTGjF6WlYQr2RRqDZX64-0kmqVuGwblJvG8wNaqUg7h76HIgIuIK6LaTda4nMlJDWvHA1c">
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Toast (Hidden by default, used for interaction demo) -->
+<div class="fixed bottom-8 right-8 bg-surface-container-high border-l-4 border-primary p-md rounded shadow-2xl transition-all translate-y-24 opacity-0 pointer-events-none z-50" id="uploadToast">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+<div>
+<p class="font-bold text-on-surface text-label-md">File validated</p>
+<p class="text-body-sm text-on-surface-variant">Your CSV is ready for import.</p>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="hideToast()">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const toast = document.getElementById('uploadToast');
+
+        // Simple drag and drop visual feedback
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropzone.classList.add('dropzone-active');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropzone.classList.remove('dropzone-active');
+            }, false);
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                showToast();
+            }
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                showToast();
+            }
+        });
+
+        function showToast() {
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+            setTimeout(hideToast, 5000);
+        }
+
+        function hideToast() {
+            toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        }
+
+        // Mouse hover interaction for cards
+        const cards = document.querySelectorAll('.bg-surface-container');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Send Notification - Notify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0E14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2D333B;
+            border-radius: 10px;
+        }
+        .glass-panel {
+            background: rgba(21, 25, 33, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #2D333B;
+        }
+        @keyframes slideInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-success {
+            animation: slideInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#3d3025",
+                        "surface-container-low": "#191c22",
+                        "outline-variant": "#45474b",
+                        "surface-variant": "#32353c",
+                        "on-background": "#e1e2eb",
+                        "tertiary-fixed-dim": "#d8c3b3",
+                        "on-secondary-fixed": "#07006c",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#524438",
+                        "primary-fixed-dim": "#c1c7d1",
+                        "surface-container-lowest": "#0b0e14",
+                        "inverse-on-surface": "#2e3037",
+                        "inverse-surface": "#e1e2eb",
+                        "tertiary": "#d8c3b3",
+                        "surface-container-high": "#272a31",
+                        "on-primary-fixed-variant": "#414750",
+                        "error-container": "#93000a",
+                        "on-surface": "#e1e2eb",
+                        "primary": "#c1c7d1",
+                        "on-tertiary": "#3b2e23",
+                        "surface-container-highest": "#32353c",
+                        "background": "#10131a",
+                        "secondary-container": "#3131c0",
+                        "outline": "#8f9195",
+                        "on-secondary": "#1000a9",
+                        "on-tertiary-container": "#aa9789",
+                        "surface-container": "#1d2026",
+                        "surface-tint": "#c1c7d1",
+                        "primary-container": "#2d333b",
+                        "on-primary": "#2b3139",
+                        "secondary": "#c0c1ff",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#24190f",
+                        "on-surface-variant": "#c5c6cb",
+                        "secondary-fixed": "#e1e0ff",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed": "#f5dfce",
+                        "on-secondary-container": "#b0b2ff",
+                        "inverse-primary": "#595f68",
+                        "surface": "#10131a",
+                        "on-primary-fixed": "#161c23",
+                        "surface-dim": "#10131a",
+                        "on-primary-container": "#959ba5",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#dde3ed",
+                        "surface-bright": "#363940"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "sidebar_width": "240px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Geist"],
+                        "mono": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "mono": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full h-16 z-40 bg-surface-container-low dark:bg-surface-container-low border-b border-outline-variant dark:border-outline-variant flex items-center justify-between px-md w-full">
+<div class="flex items-center gap-sm cursor-pointer active:opacity-80"><button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant transition-colors p-xs rounded-full md:hidden mr-xs" data-icon="menu">menu</button>
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="notifications_active">notifications_active</span>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed-dim tracking-tight">Notify</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="px-sm py-xs bg-surface-variant rounded font-label-sm text-on-surface-variant">PROD</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant transition-colors p-xs rounded-full" data-icon="account_circle">account_circle</button>
+</div>
+</header>
+<!-- NavigationDrawer Shell -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar_width z-30 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant dark:border-outline-variant hidden md:flex flex-col gap-xs p-sm">
+<div class="p-sm mb-md flex items-center gap-sm border-b border-outline-variant/30 pb-lg">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Developer Name</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Admin Access</p>
+</div>
+</div>
+<nav class="flex flex-col gap-unit"><a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard</a><a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="campaign">campaign</span> Campaigns</a><a class="flex items-center gap-md p-sm bg-secondary-container dark:bg-secondary-container text-on-secondary-container dark:text-on-secondary-container font-bold rounded-lg transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="send">send</span> Send</a><a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="upload_file">upload_file</span> Bulk Upload</a><a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="groups">groups</span> Cohorts</a><a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="error_outline">error_outline</span> DLQ</a><div class="mt-xl pt-lg border-t border-outline-variant/30"><a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out font-label-md text-label-md" href="#"><span class="material-symbols-outlined" data-icon="settings">settings</span> Settings</a></div></nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-16 md:pl-sidebar_width min-h-screen">
+<div class="max-w-[1200px] mx-auto p-lg md:p-xl">
+<div class="mb-xl">
+<h2 class="font-display text-display text-on-background mb-sm">Send Notification</h2>
+<p class="text-on-surface-variant font-body-md max-w-xl">Trigger a single notification event across your delivery channels by providing the recipient's identifier and target campaign.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Input Form Section -->
+<div class="lg:col-span-7">
+<div class="glass-panel p-lg rounded-lg">
+<form class="space-y-lg" id="notificationForm">
+<div class="space-y-unit">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block">Select Campaign</label>
+<div class="relative group">
+<select class="w-full bg-surface-container-lowest border border-outline-variant focus:border-secondary text-on-surface p-md rounded-lg appearance-none transition-all outline-none" required="">
+<option disabled="" selected="" value="">Choose a pre-defined campaign</option>
+<option value="welcome_series">User Welcome Series</option>
+<option value="pw_reset">Password Reset Request</option>
+<option value="order_confirm">Order Confirmation</option>
+<option value="mktg_newsletter">Monthly Newsletter</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="space-y-unit">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block">External User ID</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary/20 text-on-surface p-md rounded-lg transition-all outline-none font-mono" placeholder="e.g. user_9921_x" type="text">
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-unit">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]" data-icon="mail">mail</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant focus:border-secondary text-on-surface pl-10 pr-md py-md rounded-lg transition-all outline-none" placeholder="jane@example.com" type="email">
+</div>
+</div>
+<div class="space-y-unit">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block">Phone Number</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]" data-icon="phone_iphone">phone_iphone</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant focus:border-secondary text-on-surface pl-10 pr-md py-md rounded-lg transition-all outline-none" placeholder="+1 (555) 000-0000" type="tel">
+</div>
+</div>
+</div>
+<div class="pt-md">
+<button class="w-full bg-primary-container hover:bg-surface-variant text-on-background font-bold py-md rounded-lg border border-outline-variant transition-all active:scale-[0.98] flex items-center justify-center gap-sm" id="submitBtn" type="submit">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+                                    Dispatch Notification
+                                </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Response / Preview Area -->
+<div class="lg:col-span-5">
+<div class="h-full flex flex-col" id="responseContainer">
+<!-- Initial State -->
+<div class="flex-1 glass-panel border-dashed rounded-lg flex flex-col items-center justify-center p-xl text-center" id="emptyState">
+<div class="w-16 h-16 rounded-full bg-surface-variant/50 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-outline text-[32px]" data-icon="code_off">code_off</span>
+</div>
+<p class="text-on-surface-variant font-label-md uppercase tracking-widest mb-sm">Awaiting Trigger</p>
+<p class="text-on-surface-variant/60 font-body-sm px-lg">Fill out the form to the left to see the API response and delivery status in real-time.</p>
+</div>
+<!-- Success Card (Hidden by default) -->
+<div class="hidden animate-success flex-1 glass-panel border-secondary-container/50 bg-secondary-container/5 rounded-lg flex flex-col p-lg" id="successCard">
+<div class="flex items-center justify-between mb-lg">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background">Success</h3>
+<p class="text-on-surface-variant text-body-sm">Notification successfully queued</p>
+</div>
+</div>
+<span class="px-sm py-xs bg-secondary-container/20 text-on-secondary-container rounded font-label-sm border border-secondary-container/30">STATUS: 202</span>
+</div>
+<div class="space-y-md flex-1">
+<div class="p-md bg-surface-container-lowest/50 border border-outline-variant/30 rounded-lg">
+<div class="flex items-center justify-between mb-xs">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">Event ID</span>
+<span class="material-symbols-outlined text-outline text-[16px] cursor-pointer hover:text-on-surface" data-icon="content_copy">content_copy</span>
+</div>
+<p class="font-mono text-body-sm text-secondary">evt_8832_1a7b9c2d0f3</p>
+</div>
+<div class="p-md bg-surface-container-lowest/50 border border-outline-variant/30 rounded-lg">
+<div class="flex items-center justify-between mb-xs">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">Idempotency Key</span>
+<span class="material-symbols-outlined text-outline text-[16px] cursor-pointer hover:text-on-surface" data-icon="content_copy">content_copy</span>
+</div>
+<p class="font-mono text-body-sm text-on-surface">idem_key_user_active_01</p>
+</div>
+<div class="flex gap-md">
+<div class="flex-1 p-md bg-surface-container-lowest/50 border border-outline-variant/30 rounded-lg">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter block mb-xs">Duplicate</span>
+<div class="flex items-center gap-sm">
+<div class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(192,193,255,0.8)]"></div>
+<span class="font-bold text-secondary text-body-md">TRUE</span>
+</div>
+</div>
+<div class="flex-1 p-md bg-surface-container-lowest/50 border border-outline-variant/30 rounded-lg">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter block mb-xs">Provider Status</span>
+<span class="font-bold text-on-surface text-body-md uppercase">Delivered</span>
+</div>
+</div>
+</div>
+<div class="mt-lg pt-lg border-t border-outline-variant/30 flex justify-between items-center">
+<button class="text-on-surface-variant font-label-md flex items-center gap-xs hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="history">history</span> View Logs
+                                </button>
+<button class="text-secondary font-label-md flex items-center gap-xs hover:underline transition-colors" onclick="resetView()">
+                                    New Request
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Developer Tools Overlay (Small Card) -->
+<div class="mt-xl grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="glass-panel p-md rounded-lg flex items-center gap-md hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="terminal">terminal</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">cURL Example</p>
+<p class="text-[11px] text-on-surface-variant">Copy CLI command</p>
+</div>
+</div>
+<div class="glass-panel p-md rounded-lg flex items-center gap-md hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="webhook">webhook</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Webhook Logs</p>
+<p class="text-[11px] text-on-surface-variant">Monitor callbacks</p>
+</div>
+</div>
+<div class="glass-panel p-md rounded-lg flex items-center gap-md hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="history_edu">history_edu</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Schema Registry</p>
+<p class="text-[11px] text-on-surface-variant">Payload definitions</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        const form = document.getElementById('notificationForm');
+        const emptyState = document.getElementById('emptyState');
+        const successCard = document.getElementById('successCard');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulation of a backend request
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-on-background" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+            `;
+
+            setTimeout(() => {
+                emptyState.classList.add('hidden');
+                successCard.classList.remove('hidden');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `
+                    <span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+                    Dispatch Notification
+                `;
+            }, 1200);
+        });
+
+        function resetView() {
+            successCard.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+            form.reset();
+        }
+    </script>
+
+
+</body></html>

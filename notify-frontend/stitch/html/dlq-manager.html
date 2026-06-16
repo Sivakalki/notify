@@ -1,0 +1,433 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DLQ Manager | Notify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#3d3025",
+                    "surface-container-low": "#191c22",
+                    "outline-variant": "#45474b",
+                    "surface-variant": "#32353c",
+                    "on-background": "#e1e2eb",
+                    "tertiary-fixed-dim": "#d8c3b3",
+                    "on-secondary-fixed": "#07006c",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#524438",
+                    "primary-fixed-dim": "#c1c7d1",
+                    "surface-container-lowest": "#0b0e14",
+                    "inverse-on-surface": "#2e3037",
+                    "inverse-surface": "#e1e2eb",
+                    "tertiary": "#d8c3b3",
+                    "surface-container-high": "#272a31",
+                    "on-primary-fixed-variant": "#414750",
+                    "error-container": "#93000a",
+                    "on-surface": "#e1e2eb",
+                    "primary": "#c1c7d1",
+                    "on-tertiary": "#3b2e23",
+                    "surface-container-highest": "#32353c",
+                    "background": "#10131a",
+                    "secondary-container": "#3131c0",
+                    "outline": "#8f9195",
+                    "on-secondary": "#1000a9",
+                    "on-tertiary-container": "#aa9789",
+                    "surface-container": "#1d2026",
+                    "surface-tint": "#c1c7d1",
+                    "primary-container": "#2d333b",
+                    "on-primary": "#2b3139",
+                    "secondary": "#c0c1ff",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#24190f",
+                    "on-surface-variant": "#c5c6cb",
+                    "secondary-fixed": "#e1e0ff",
+                    "secondary-fixed-dim": "#c0c1ff",
+                    "tertiary-fixed": "#f5dfce",
+                    "on-secondary-container": "#b0b2ff",
+                    "inverse-primary": "#595f68",
+                    "surface": "#10131a",
+                    "on-primary-fixed": "#161c23",
+                    "surface-dim": "#10131a",
+                    "on-primary-container": "#959ba5",
+                    "on-secondary-fixed-variant": "#2f2ebe",
+                    "error": "#ffb4ab",
+                    "primary-fixed": "#dde3ed",
+                    "surface-bright": "#363940"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "sidebar_width": "240px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "unit": "4px",
+                    "xs": "4px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "label-md": ["Geist"],
+                    "mono": ["Geist"],
+                    "headline-lg": ["Inter"],
+                    "display": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["Geist"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "mono": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0b0e14;
+            color: #e1e2eb;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dlq-row-hover:hover {
+            background-color: #1c212b;
+        }
+        .dlq-glow-border {
+            border: 1px solid #2d333b;
+        }
+        .dlq-glow-border:focus-within {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 1px #6366f1;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #10131a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d333b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #45474b;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full h-16 z-40 bg-surface-container-low border-b border-outline-variant flex items-center justify-between px-md"><button class="p-2 hover:bg-surface-variant rounded-full transition-colors text-on-surface-variant mr-2">
+  <span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="notifications_active">notifications_active</span>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">Notify</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs px-sm py-1 bg-surface-variant rounded text-label-sm uppercase tracking-widest text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                PROD
+            </div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="search">search</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- NavigationDrawer -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar_width z-30 bg-surface-container-low border-r border-outline-variant flex flex-col gap-xs p-sm">
+<div class="flex items-center gap-sm p-sm mb-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md font-bold truncate text-on-surface">Developer Name</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Admin Access</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1"><!-- Dashboard -->
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg group" href="#">
+  <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+  <span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Campaigns -->
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg" href="#">
+  <span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+  <span class="font-label-md text-label-md">Campaigns</span>
+</a>
+<!-- Send -->
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg" href="#">
+  <span class="material-symbols-outlined" data-icon="send">send</span>
+  <span class="font-label-md text-label-md">Send</span>
+</a>
+<!-- Bulk Upload -->
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg" href="#">
+  <span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+  <span class="font-label-md text-label-md">Bulk Upload</span>
+</a>
+<!-- Cohorts -->
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg" href="#">
+  <span class="material-symbols-outlined" data-icon="groups">groups</span>
+  <span class="font-label-md text-label-md">Cohorts</span>
+</a>
+<!-- DLQ (Active) -->
+<a class="flex items-center gap-sm px-sm py-2 bg-secondary-container text-on-secondary-container font-bold rounded-lg" href="#">
+  <span class="material-symbols-outlined" data-icon="error_outline">error_outline</span>
+  <span class="font-label-md text-label-md">DLQ</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-sm px-sm py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 rounded-lg" href="#">
+  <span class="material-symbols-outlined" data-icon="settings">settings</span>
+  <span class="font-label-md text-label-md">Settings</span>
+</a></nav>
+</aside>
+<!-- Main Content -->
+<main class="ml-sidebar_width mt-16 p-lg min-h-screen">
+<div class="max-w-[1600px] mx-auto space-y-lg">
+<!-- Page Header & Filters -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div>
+<div class="flex items-center gap-sm mb-1">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-mono text-[10px] tracking-widest uppercase">Manager</span>
+<h2 class="font-headline-md text-headline-md">Dead Letter Queue</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage and replay failed notification events. Status: <span class="text-secondary font-bold">148 Failures</span> detected in last 24h.</p>
+</div>
+<div class="flex items-center gap-sm bg-surface-container-high p-1 rounded-lg border border-outline-variant">
+<button class="px-md py-1.5 rounded-md text-label-md font-bold bg-secondary-container text-on-secondary-container shadow-sm transition-all" id="filterAll">Show all</button>
+<button class="px-md py-1.5 rounded-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="filterPending">Pending only</button>
+</div>
+</div>
+<!-- Dashboard Stats Grid (Developer Centric) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<div class="bg-surface-container p-md rounded-xl border border-outline-variant">
+<p class="text-label-sm font-mono text-on-surface-variant mb-1 uppercase tracking-tighter">Queue Depth</p>
+<div class="flex items-baseline gap-sm">
+<span class="font-display text-display text-secondary">2,841</span>
+<span class="text-error font-label-sm font-bold">+12%</span>
+</div>
+</div>
+<div class="bg-surface-container p-md rounded-xl border border-outline-variant">
+<p class="text-label-sm font-mono text-on-surface-variant mb-1 uppercase tracking-tighter">Success Rate (Replay)</p>
+<div class="flex items-baseline gap-sm">
+<span class="font-display text-display text-on-surface">94.2%</span>
+</div>
+</div>
+<div class="bg-surface-container p-md rounded-xl border border-outline-variant">
+<p class="text-label-sm font-mono text-on-surface-variant mb-1 uppercase tracking-tighter">Avg TTL in DLQ</p>
+<div class="flex items-baseline gap-sm">
+<span class="font-display text-display text-on-surface">4.2h</span>
+</div>
+</div>
+<div class="bg-surface-container p-md rounded-xl border border-outline-variant relative overflow-hidden">
+<p class="text-label-sm font-mono text-on-surface-variant mb-1 uppercase tracking-tighter">Health Monitor</p>
+<div class="h-10 mt-2 flex items-end gap-[2px]">
+<div class="w-full bg-secondary/20 h-4 rounded-t-sm"></div>
+<div class="w-full bg-secondary/40 h-6 rounded-t-sm"></div>
+<div class="w-full bg-secondary/20 h-5 rounded-t-sm"></div>
+<div class="w-full bg-secondary/80 h-9 rounded-t-sm"></div>
+<div class="w-full bg-secondary/50 h-7 rounded-t-sm"></div>
+<div class="w-full bg-secondary/10 h-3 rounded-t-sm"></div>
+<div class="w-full bg-secondary h-full rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<!-- DLQ Table Container -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden shadow-2xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-b border-outline-variant">
+<th class="p-md font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">ID</th>
+<th class="p-md font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Event ID</th>
+<th class="p-md font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Reason</th>
+<th class="p-md font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Payload Preview</th>
+<th class="p-md font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Created Date</th>
+<th class="p-md font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Replayed At</th>
+<th class="p-md font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="dlq-row-hover transition-colors">
+<td class="p-md font-mono text-label-md text-on-surface">#dlq_9021</td>
+<td class="p-md font-mono text-label-sm text-secondary">evt_7f8s2k1</td>
+<td class="p-md">
+<span class="px-2 py-1 rounded bg-error-container/20 text-error border border-error/20 font-label-sm">SMTP_TIMEOUT</span>
+</td>
+<td class="p-md">
+<div class="max-w-[200px] truncate font-mono text-label-sm text-on-surface-variant bg-surface-container-lowest p-1 rounded">{"userId":"usr_44","type":"email","template":"welcome_v2"}</div>
+</td>
+<td class="p-md font-label-sm text-on-surface-variant">2023-10-24 14:20:11</td>
+<td class="p-md">
+<span class="font-label-sm italic text-outline">pending</span>
+</td>
+<td class="p-md text-right">
+<button class="px-3 py-1 bg-primary-container text-primary font-label-md border border-outline-variant hover:bg-primary hover:text-on-primary transition-all rounded" onclick="confirmReplay(this)">Replay</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="dlq-row-hover transition-colors">
+<td class="p-md font-mono text-label-md text-on-surface">#dlq_9022</td>
+<td class="p-md font-mono text-label-sm text-secondary">evt_3j9l0p4</td>
+<td class="p-md">
+<span class="px-2 py-1 rounded bg-tertiary-container/20 text-tertiary border border-tertiary/20 font-label-sm">THROTTLED</span>
+</td>
+<td class="p-md">
+<div class="max-w-[200px] truncate font-mono text-label-sm text-on-surface-variant bg-surface-container-lowest p-1 rounded">{"sms":"+12025550123","msg":"Your OTP is 9928"}</div>
+</td>
+<td class="p-md font-label-sm text-on-surface-variant">2023-10-24 14:18:05</td>
+<td class="p-md">
+<span class="font-label-sm text-on-surface-variant">2023-10-24 15:00:12</span>
+</td>
+<td class="p-md text-right">
+<span class="text-on-surface-variant/40 material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="dlq-row-hover transition-colors">
+<td class="p-md font-mono text-label-md text-on-surface">#dlq_9023</td>
+<td class="p-md font-mono text-label-sm text-secondary">evt_1a2b3c4</td>
+<td class="p-md">
+<span class="px-2 py-1 rounded bg-error-container/20 text-error border border-error/20 font-label-sm">INVALID_RECIPIENT</span>
+</td>
+<td class="p-md">
+<div class="max-w-[200px] truncate font-mono text-label-sm text-on-surface-variant bg-surface-container-lowest p-1 rounded">{"email":"not-an-email","subject":"Test Run"}</div>
+</td>
+<td class="p-md font-label-sm text-on-surface-variant">2023-10-24 13:45:59</td>
+<td class="p-md">
+<span class="font-label-sm italic text-outline">pending</span>
+</td>
+<td class="p-md text-right">
+<button class="px-3 py-1 bg-primary-container text-primary font-label-md border border-outline-variant hover:bg-primary hover:text-on-primary transition-all rounded" onclick="confirmReplay(this)">Replay</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="dlq-row-hover transition-colors">
+<td class="p-md font-mono text-label-md text-on-surface">#dlq_9024</td>
+<td class="p-md font-mono text-label-sm text-secondary">evt_9z8y7x6</td>
+<td class="p-md">
+<span class="px-2 py-1 rounded bg-error-container/20 text-error border border-error/20 font-label-sm">DB_WRITE_FAIL</span>
+</td>
+<td class="p-md">
+<div class="max-w-[200px] truncate font-mono text-label-sm text-on-surface-variant bg-surface-container-lowest p-1 rounded">{"payload":"large_blob_buffer","retry":3}</div>
+</td>
+<td class="p-md font-label-sm text-on-surface-variant">2023-10-24 12:01:44</td>
+<td class="p-md">
+<span class="font-label-sm italic text-outline">pending</span>
+</td>
+<td class="p-md text-right">
+<button class="px-3 py-1 bg-primary-container text-primary font-label-md border border-outline-variant hover:bg-primary hover:text-on-primary transition-all rounded" onclick="confirmReplay(this)">Replay</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between p-md bg-surface-container-high border-t border-outline-variant">
+<p class="font-label-sm text-on-surface-variant">Showing 1-4 of 148 failed events</p>
+<div class="flex items-center gap-xs">
+<button class="p-1 hover:bg-surface-variant rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<span class="font-label-sm text-on-surface px-2">1</span>
+<button class="p-1 hover:bg-surface-variant rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Terminal-style log output for active sessions (Atmospheric) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md font-mono text-label-sm overflow-hidden relative">
+<div class="flex items-center justify-between mb-sm border-b border-outline-variant pb-xs">
+<span class="text-on-surface-variant flex items-center gap-xs"><span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span> Streaming Logs</span>
+<span class="text-[10px] text-outline">v2.4.0-release</span>
+</div>
+<div class="space-y-1 opacity-80">
+<div class="flex gap-md"><span class="text-outline">[14:25:01]</span> <span class="text-secondary">INFO:</span> Listening for new DLQ arrivals on queue 'notify-dlq'</div>
+<div class="flex gap-md"><span class="text-outline">[14:25:02]</span> <span class="text-tertiary">WARN:</span> Node-2 reported increased latency in replaying #dlq_8921</div>
+<div class="flex gap-md"><span class="text-outline">[14:26:44]</span> <span class="text-error">FAIL:</span> Event evt_7f8s2k1 moved to DLQ. Reason: SMTP_TIMEOUT</div>
+<div class="flex gap-md"><span class="text-outline">[14:27:12]</span> <span class="text-secondary">INFO:</span> Bulk replay of 50 items initiated by 'Developer Name'</div>
+</div>
+<div class="absolute bottom-0 right-0 w-32 h-32 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-secondary" data-icon="terminal">terminal</span>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for bulk actions -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-secondary text-on-secondary rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined group-hover:rotate-180 transition-transform duration-500" data-icon="replay">replay</span>
+</button>
+<script>
+        // Micro-interactions for replay confirmation
+        function confirmReplay(btn) {
+            const originalText = btn.innerText;
+            if (originalText === 'Replay') {
+                btn.innerText = 'Confirm?';
+                btn.classList.remove('bg-primary-container', 'text-primary');
+                btn.classList.add('bg-error-container', 'text-on-error-container', 'border-error');
+                
+                // Reset after 3 seconds if not clicked again
+                setTimeout(() => {
+                    if (btn.innerText === 'Confirm?') {
+                        btn.innerText = 'Replay';
+                        btn.classList.remove('bg-error-container', 'text-on-error-container', 'border-error');
+                        btn.classList.add('bg-primary-container', 'text-primary');
+                    }
+                }, 3000);
+            } else {
+                btn.innerHTML = '<span class="material-symbols-outlined text-[14px] animate-spin">refresh</span>';
+                btn.disabled = true;
+                setTimeout(() => {
+                    const row = btn.closest('tr');
+                    const replayedCell = row.cells[5];
+                    replayedCell.innerHTML = `<span class="font-label-sm text-on-surface-variant">${new Date().toISOString().slice(0, 19).replace('T', ' ')}</span>`;
+                    btn.parentElement.innerHTML = '<span class="text-on-surface-variant/40 material-symbols-outlined" data-icon="check_circle">check_circle</span>';
+                }, 1500);
+            }
+        }
+
+        // Simple Toggle Filter
+        const filterAll = document.getElementById('filterAll');
+        const filterPending = document.getElementById('filterPending');
+
+        filterAll.addEventListener('click', () => {
+            filterAll.className = 'px-md py-1.5 rounded-md text-label-md font-bold bg-secondary-container text-on-secondary-container shadow-sm transition-all';
+            filterPending.className = 'px-md py-1.5 rounded-md text-label-md text-on-surface-variant hover:text-on-surface transition-all';
+        });
+
+        filterPending.addEventListener('click', () => {
+            filterPending.className = 'px-md py-1.5 rounded-md text-label-md font-bold bg-secondary-container text-on-secondary-container shadow-sm transition-all';
+            filterAll.className = 'px-md py-1.5 rounded-md text-label-md text-on-surface-variant hover:text-on-surface transition-all';
+        });
+    </script>
+
+
+</body></html>
