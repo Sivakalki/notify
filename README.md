@@ -92,6 +92,23 @@ Each sub-project has its own README with full setup instructions:
 
 ---
 
+## Screenshots
+
+![System Performance Dashboard](images/dashboard2.png)
+*System Performance Overview — real-time stats and Kafka Consumer Group Lag per partition*
+
+---
+
+![Dashboard with Filters](images/dashboard1.png)
+*Dashboard with active filters — cache bypassed for live results*
+
+---
+
+![Campaign Detail](images/campaign.png)
+*Campaign Detail — per-notification history with delivery timestamps and status*
+
+---
+
 ## Quick Start
 
 **Prerequisites:** Docker, Java 21, Node 20+
